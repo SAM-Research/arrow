@@ -37,9 +37,3 @@ find_package(Threads REQUIRED)
 
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../installed/arrow)
 add_subdirectory(cpp)
-
-# Define a custom target for installing Arrow (if necessary)
-add_custom_target(install_arrow
-        COMMAND "${CMAKE_COMMAND}" --build . --target install
-        WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/cpp"
-)

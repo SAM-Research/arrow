@@ -15,7 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.27 FATAL_ERROR)
 message(STATUS "Building using CMake version: ${CMAKE_VERSION}")
 
 # https://www.cmake.org/cmake/help/latest/policy/CMP0025.html
@@ -551,10 +551,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ARROW_CXXFLAGS}")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CXX_COMMON_FLAGS} ${ARROW_CXXFLAGS}")
 
 # Remove --std=c++17 to avoid errors from C compilers
-string(REPLACE "-std=c++17" "" CMAKE_C_FLAGS ${CMAKE_C_FLAGS})
+string(REPLACE "-std=c++20" "" CMAKE_C_FLAGS ${CMAKE_C_FLAGS})
 
 # Add C++-only flags, like -std=c++17
-set(CMAKE_CXX_FLAGS "${CXX_ONLY_FLAGS} ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CXX_ONLY_FLAGS} ${CMAKE_CXX_FLAGS} -std=c++20")
 
 # ASAN / TSAN / UBSAN
 if(ARROW_FUZZING)

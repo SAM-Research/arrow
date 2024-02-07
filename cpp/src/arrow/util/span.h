@@ -57,14 +57,14 @@ writing code which would break when it is replaced by std::span.)");
       : data_{begin}, size_{static_cast<size_t>(end - begin)} {}
 
   template <
-      typename R,
-      typename DisableUnlessConstructibleFromDataAndSize =
-          decltype(span<T>(std::data(std::declval<R>()), std::size(std::declval<R>()))),
-      typename DisableUnlessSimilarTypes = std::enable_if_t<std::is_same_v<
-          std::decay_t<std::remove_pointer_t<decltype(std::data(std::declval<R>()))>>,
-          std::decay_t<T>>>>
+      typename R
+//      ,typename DisableUnlessConstructibleFromDataAndSize =
+//          decltype(span<T>(std::data(std::declval<R>()), std::size(std::declval<R>()))),
+//      typename DisableUnlessSimilarTypes = std::enable_if_t<std::is_same_v<
+//          std::decay_t<std::remove_pointer_t<decltype(std::data(std::declval<R>()))>>,
+//          std::decay_t<T>>>>
   // NOLINTNEXTLINE runtime/explicit, non-const reference
-  constexpr span(R&& range) : span{std::data(range), std::size(range)} {}
+  >constexpr span(R && range) : span{std::data(std::forward<R>(range)), std::size(std::forward<R>(range))} {}
 
   constexpr T* begin() const { return data_; }
   constexpr T* end() const { return data_ + size_; }
