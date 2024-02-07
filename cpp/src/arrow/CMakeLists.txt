@@ -412,6 +412,7 @@ endif()
 # Baseline Compute functionality + scalar casts and a few select kernels
 list(APPEND
      ARROW_SRCS
+     compute/api_additional.cc
      compute/api_aggregate.cc
      compute/api_scalar.cc
      compute/api_vector.cc
@@ -459,6 +460,9 @@ if(ARROW_COMPUTE)
   # Include the remaining kernels
   list(APPEND
        ARROW_SRCS
+       compute/kernels/additional/corr.cc
+       compute/kernels/additional/cov.cc
+       compute/kernels/additional/shift.cc
        compute/kernels/aggregate_basic.cc
        compute/kernels/aggregate_mode.cc
        compute/kernels/aggregate_quantile.cc

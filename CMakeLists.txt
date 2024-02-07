@@ -1,0 +1,45 @@
+#set(CMAKE_TOOLCHAIN_FILE $ENV{HOME}/vcpkg/scripts/buildsystems/vcpkg.cmake CACHE STRING "Vcpkg toolchain file")
+
+set(ARROW_SIMD_LEVEL DEFAULT)
+set(ARROW_RUNTIME_SIMD_LEVEL MAX)
+
+set(ARROW_BUILD_STATIC OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
+set(ARROW_BUILD_SHARED ON)
+set(ARROW_BUILD_TESTS OFF)
+
+set(ARROW_ACERO ON)
+set(ARROW_COMPUTE ON)
+set(ARROW_CSV ON)
+set(ARROW_DATASET ON)
+set(ARROW_FILESYSTEM ON)
+set(ARROW_JSON ON)
+set(ARROW_PARQUET ON)
+set(ARROW_GANDIVA OFF) # has some llvm issues
+set(ARROW_IPC ON)
+
+set(ARROW_WITH_RE2 OFF)
+set(ARROW_WITH_UTF8PROC OFF)
+set(ARROW_WITH_ZLIB ON)
+
+set(ARROW_CUDA ON)
+
+set(CMAKE_UNITY_BUILD ON)
+
+set(ARROW_BOOST_USE_SHARED OFF)
+set(ARROW_DEPENDENCY_USE_SHARED ON)
+
+set(ARROW_DEPENDENCY_SOURCE AUTO)
+SET(ARROW_POSITION_INDEPENDENT_CODE ON)
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../installed/arrow)
+add_subdirectory(cpp)
+
+# Define a custom target for installing Arrow (if necessary)
+add_custom_target(install_arrow
+        COMMAND "${CMAKE_COMMAND}" --build . --target install
+        WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/cpp"
+)

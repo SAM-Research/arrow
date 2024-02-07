@@ -68,6 +68,12 @@ void RegisterScalarAggregateVariance(FunctionRegistry* registry);
 
 void RegisterAggregateOptions(FunctionRegistry* registry);
 
+// Additional functions
+void RegisterScalarAggregateCorrelation(FunctionRegistry* registry);
+void RegisterScalarAggregateCovariance(FunctionRegistry* registry);
+void RegisterShiftFunction(FunctionRegistry* registry);
+
+
 }  // namespace internal
 }  // namespace compute
 }  // namespace arrow
