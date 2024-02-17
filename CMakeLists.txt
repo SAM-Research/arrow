@@ -35,5 +35,5 @@ SET(ARROW_POSITION_INDEPENDENT_CODE ON)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../installed/arrow)
+#set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../installed/arrow)
 add_subdirectory(cpp)
