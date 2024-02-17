@@ -2,6 +2,7 @@
 // Created by dewe on 2/6/24.
 //
 #include "api_additional.h"
+#include "api.h"
 
 
 namespace arrow {
